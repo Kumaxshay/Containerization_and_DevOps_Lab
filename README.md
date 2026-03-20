@@ -9,7 +9,6 @@ Batch - 3
 ## ASSIGNMENT
 
 - [Assignment 1](ASSIGNMENT1/intro.md)
-
 ## LAB
 
 1. [Experiment 1 – Vagrant & NGINX Setup](lab/exp1/intro.md)
