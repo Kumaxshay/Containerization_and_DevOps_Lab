@@ -8,7 +8,7 @@ Batch - 3
 
 ## ASSIGNMENT
 
-- [Assignment 1](ASSIGNMENT1/intro.md)
+- [Assignment 1](Assignment%201/intro.html)
 ## LAB
 
 1. [Experiment 1 – Vagrant & NGINX Setup](lab/exp1/intro.md)
