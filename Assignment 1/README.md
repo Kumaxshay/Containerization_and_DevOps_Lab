@@ -4,14 +4,7 @@ A production-ready containerized web application using **Node.js + Express** bac
 
 **[🌐 Live Project Site](https://kumaxshay.github.io/Containerization_and_DevOps_Lab/)**
 
-The above link opens the project page with:
 
-- Full system architecture diagram
-- Step-by-step setup guide with terminal outputs
-- API endpoint documentation
-- IPvlan vs Macvlan comparison table
-- Image optimization results
-- 
 ##  Project Structure
 
 ```
