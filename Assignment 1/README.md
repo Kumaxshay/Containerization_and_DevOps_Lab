@@ -2,6 +2,8 @@
 
 A production-ready containerized web application using **Node.js + Express** backend with **PostgreSQL** database, orchestrated via **Docker Compose** with **IPvlan** networking and **persistent volumes**.
 
+**[🌐 Live Project Site](https://kumaxshay.github.io/Containerization_and_DevOps_Lab/)**
+
 ##  Project Structure
 
 ```
@@ -129,3 +131,5 @@ See [REPORT.md](./REPORT.md) for the detailed project report including:
 - Network design diagram
 - Image size comparison
 - Macvlan vs IPvlan comparison
+
+
