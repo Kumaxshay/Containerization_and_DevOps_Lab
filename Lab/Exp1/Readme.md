@@ -1,10 +1,9 @@
 # Containerization and DevOps Lab
 
-Name: Shreya Mahara
+Name: Akshay Kumar
+Roll no: R2142231012
 
-Roll no: R2142231007
-
-Sap-ID: 500121082
+Sap-ID: 500120477
 
 
 # Installation and Configuration of Windows Subsystem for Linux (WSL)
