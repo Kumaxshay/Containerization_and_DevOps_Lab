@@ -1,123 +1,714 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Containerization and DevOps Lab</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Containerization & DevOps Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
+    :root {
+      --bg-deep: #000000;
+      --bg-mid: #0b0c2a;
+      --surface: rgba(255,255,255,0.05);
+      --surface-hover: rgba(0,247,255,0.07);
+      --border: rgba(0,247,255,0.15);
+      --border-hover: rgba(0,247,255,0.5);
+      --accent: #00f7ff;
+      --accent2: #0077ff;
+      --accent3: #ff6b35;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.55);
+    }
+
     body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        color: white;
-        text-align: center;
-        background: radial-gradient(circle at bottom, #0b0c2a, #000000);
+      font-family: 'Exo 2', sans-serif;
+      background: radial-gradient(ellipse at bottom center, #0b0c2a 0%, #000000 70%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* STAR BACKGROUND */
-    .stars {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
+    /* ── STARS ── */
+    .stars-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      animation: twinkle var(--dur, 3s) var(--delay, 0s) infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.2; transform: scale(1); }
+      to   { opacity: 1;   transform: scale(1.4); }
+    }
+    .shooting-star {
+      position: absolute;
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      animation: shoot var(--sd, 6s) var(--delay, 0s) infinite linear;
+      opacity: 0;
+    }
+    @keyframes shoot {
+      0%   { opacity: 0; transform: translateX(-150px) translateY(0) rotate(-30deg); }
+      5%   { opacity: 1; }
+      20%  { opacity: 0; transform: translateX(400px) translateY(200px) rotate(-30deg); }
+      100% { opacity: 0; transform: translateX(400px) translateY(200px) rotate(-30deg); }
     }
 
-    .stars::after {
-        content: "";
-        position: absolute;
-        width: 2px;
-        height: 2px;
-        background: white;
-        box-shadow:
-            50px 100px white, 150px 300px white, 250px 500px white,
-            350px 150px white, 450px 350px white, 550px 550px white,
-            650px 250px white, 750px 450px white, 850px 650px white;
-        animation: moveStars 25s linear infinite;
+    /* ── NEBULA GLOW ── */
+    .nebula {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .nebula-1 { width: 600px; height: 400px; background: radial-gradient(circle, rgba(0,119,255,0.12) 0%, transparent 70%); bottom: -100px; left: -100px; animation: drift 18s ease-in-out infinite alternate; }
+    .nebula-2 { width: 500px; height: 300px; background: radial-gradient(circle, rgba(0,247,255,0.08) 0%, transparent 70%); top: 100px; right: -80px; animation: drift 22s ease-in-out infinite alternate-reverse; }
+    .nebula-3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,107,53,0.06) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: drift 15s ease-in-out infinite alternate; }
+    @keyframes drift {
+      from { transform: translate(0, 0); }
+      to   { transform: translate(30px, 20px); }
     }
 
-    @keyframes moveStars {
-        from { transform: translateY(0); }
-        to { transform: translateY(-1000px); }
+    /* ── LAYOUT ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      text-align: center;
+      margin-bottom: 56px;
+      animation: fadeDown 0.7s ease both;
+    }
+
+    .rocket-icon {
+      font-size: 3.5rem;
+      display: block;
+      margin: 0 auto 16px;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px var(--accent));
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
     }
 
     h1 {
-        margin-top: 40px;
-        font-size: 2.5rem;
-        animation: glow 2s infinite alternate;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      animation: glow-text 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes glow-text {
+      from { filter: drop-shadow(0 0 8px rgba(0,247,255,0.4)); }
+      to   { filter: drop-shadow(0 0 20px rgba(0,247,255,0.8)); }
     }
 
-    @keyframes glow {
-        from { text-shadow: 0 0 10px #00f7ff; }
-        to { text-shadow: 0 0 20px #00f7ff, 0 0 30px #00f7ff; }
+    .subtitle {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
     }
 
-    .card {
-        margin: 30px auto;
-        padding: 20px;
-        width: 90%;
-        max-width: 600px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 15px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
-        transition: 0.3s;
+    /* ── GITHUB BTN ── */
+    .github-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Orbitron', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      background: rgba(0,247,255,0.06);
+      border: 1px solid var(--border);
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: all 0.3s;
+      margin-top: 24px;
+      letter-spacing: 1px;
+    }
+    .github-btn:hover {
+      background: rgba(0,247,255,0.12);
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(0,247,255,0.3);
+      transform: scale(1.05);
     }
 
-    .card:hover {
-        transform: scale(1.05);
+    /* ── STUDENT CARD ── */
+    .student-card {
+      margin: 40px auto 0;
+      max-width: 560px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 30px rgba(0,247,255,0.1);
+      padding: 28px 32px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 16px;
+      transition: 0.3s;
+    }
+    .student-card:hover {
+      box-shadow: 0 0 40px rgba(0,247,255,0.2);
+      border-color: rgba(0,247,255,0.35);
+      transform: translateY(-2px);
     }
 
-    .btn {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 12px 25px;
-        font-size: 1rem;
-        color: white;
-        background: linear-gradient(45deg, #00f7ff, #0077ff);
-        border-radius: 25px;
-        text-decoration: none;
-        transition: 0.3s;
+    .student-field { text-align: center; }
+    .student-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+    .student-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
     }
 
-    .btn:hover {
-        box-shadow: 0 0 15px #00f7ff;
-        transform: scale(1.1);
+    /* ── SECTIONS ── */
+    .section {
+      margin-bottom: 20px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .section:nth-child(1) { animation-delay: 0.1s; }
+    .section:nth-child(2) { animation-delay: 0.2s; }
+    .section:nth-child(3) { animation-delay: 0.3s; }
+
+    /* ── FOLDER ROOT ── */
+    .folder-root {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 26px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      cursor: pointer;
+      user-select: none;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s;
+    }
+    .folder-root:hover {
+      border-color: rgba(0,247,255,0.4);
+      box-shadow: 0 0 20px rgba(0,247,255,0.1);
+      transform: translateY(-1px);
+    }
+    .folder-root.open {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px rgba(0,247,255,0.15);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-color: var(--border);
     }
 
+    .folder-root.assignment-root:hover { border-color: rgba(255,107,53,0.4); box-shadow: 0 0 20px rgba(255,107,53,0.1); }
+    .folder-root.assignment-root.open { border-color: var(--accent3); box-shadow: 0 0 30px rgba(255,107,53,0.15); }
+    .folder-root.assignment-root.open .chevron { color: var(--accent3); }
+
+    .folder-root-icon { font-size: 1.5rem; }
+    .folder-root-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      flex: 1;
+      letter-spacing: 1px;
+    }
+    .folder-root-meta { font-size: 11px; color: var(--muted); }
+
+    .chevron {
+      font-size: 0.7rem;
+      color: var(--accent);
+      transition: transform 0.3s ease;
+    }
+    .open > .chevron { transform: rotate(90deg); }
+
+    /* ── ROOT CHILDREN ── */
+    .root-children {
+      display: none;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--accent);
+      border-top: none;
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+      padding: 14px;
+      gap: 8px;
+      flex-direction: column;
+      backdrop-filter: blur(10px);
+    }
+    .root-children.visible { display: flex; }
+    .root-children.assignment-children { border-color: var(--accent3); }
+
+    /* ── FOLDER ROW ── */
+    .folder-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 18px;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.25s;
+    }
+    .folder-row:hover { border-color: rgba(0,247,255,0.3); background: var(--surface-hover); }
+    .folder-row.open { border-color: rgba(0,247,255,0.4); border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+
+    .folder-row.assign-row:hover { border-color: rgba(255,107,53,0.35); background: rgba(255,107,53,0.05); }
+    .folder-row.assign-row.open { border-color: rgba(255,107,53,0.5); }
+    .folder-row.assign-row.open .chevron { color: var(--accent3); }
+
+    .folder-row-icon { font-size: 1.1rem; }
+    .folder-row-name { font-size: 0.9rem; font-weight: 600; flex: 1; }
+    .folder-row-path { font-size: 10px; color: var(--muted); font-family: monospace; }
+
+    /* ── LEAF GRID ── */
+    .leaf-grid {
+      display: none;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+      padding: 12px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(0,247,255,0.25);
+      border-top: none;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    .leaf-grid.visible { display: grid; }
+    .leaf-grid.assign-grid { border-color: rgba(255,107,53,0.25); }
+
+    .leaf-card {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 14px 16px;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text);
+      backdrop-filter: blur(6px);
+      transition: all 0.3s;
+    }
+    .leaf-card:hover {
+      border-color: var(--accent);
+      background: var(--surface-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 0 18px rgba(0,247,255,0.15), 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .leaf-card.assign-card:hover { border-color: var(--accent3); box-shadow: 0 0 18px rgba(255,107,53,0.15), 0 8px 20px rgba(0,0,0,0.4); }
+
+    .leaf-card-icon { font-size: 1.1rem; }
+    .leaf-card-name { font-size: 0.85rem; font-weight: 600; }
+    .leaf-card-path { font-size: 9px; color: var(--muted); font-family: monospace; }
+
+    /* ── TAGS ── */
+    .tag {
+      display: inline-block;
+      font-size: 9px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      width: fit-content;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+    }
+    .tag-blue  { background: rgba(0,247,255,0.1);  color: var(--accent);  border: 1px solid rgba(0,247,255,0.25); }
+    .tag-green { background: rgba(0,255,128,0.1);  color: #00ff80;        border: 1px solid rgba(0,255,128,0.25); }
+    .tag-amber { background: rgba(255,107,53,0.1); color: var(--accent3); border: 1px solid rgba(255,107,53,0.25); }
+
+    /* ── FOOTER ── */
     footer {
-        margin-top: 40px;
-        font-size: 0.8rem;
-        opacity: 0.7;
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(0,247,255,0.1);
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      letter-spacing: 1px;
     }
-</style>
-</head>
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-shadow: 0 0 10px var(--accent); }
 
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION HEADER SPACING ── */
+    .sections-title {
+      text-align: center;
+      margin: 48px 0 28px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
 <body>
 
-<div class="stars"></div>
+<!-- Stars -->
+<div class="stars-layer" id="starsLayer"></div>
 
-<h1>🚀 Containerization & DevOps Lab</h1>
+<!-- Nebula glow -->
+<div class="nebula nebula-1"></div>
+<div class="nebula nebula-2"></div>
+<div class="nebula nebula-3"></div>
 
-<div class="card">
-    <h2>👨‍💻 Student Details</h2>
-    <p><b>Name:</b> Akshay Kumar</p>
-    <p><b>SAP ID:</b> 500120477</p>
-    <p><b>Batch:</b> 3</p>
-</div>
+<div class="container">
 
-<div class="card">
-    <h2>📘 GitHub Repository</h2>
-    <p>Click below to open the project repository</p>
+  <!-- ══ HEADER ══ -->
+  <header>
+    <span class="rocket-icon">🚀</span>
+    <h1>Containerization<br>&amp; DevOps Lab</h1>
+    <p class="subtitle">// Explore the mission files below</p>
 
-    <!-- ✅ CORRECT LINK -->
-    <a href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab" target="_blank" class="btn">
+    <div style="text-align:center;">
+      <a class="github-btn" href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab" target="_blank">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
         Open GitHub Repository
-    </a>
+      </a>
+    </div>
+
+    <div class="student-card">
+      <div class="student-field">
+        <div class="student-label">👨‍💻 Name</div>
+        <div class="student-value">Akshay Kumar</div>
+      </div>
+      <div class="student-field">
+        <div class="student-label">🪪 SAP ID</div>
+        <div class="student-value">500120477</div>
+      </div>
+      <div class="student-field">
+        <div class="student-label">⚡ Batch</div>
+        <div class="student-value">3</div>
+      </div>
+    </div>
+  </header>
+
+  <p class="sections-title">🌌 Mission Files</p>
+
+  <!-- ══ ASSIGNMENT ══ -->
+  <section class="section">
+    <div class="folder-root assignment-root" onclick="toggleRoot(this)">
+      <span class="folder-root-icon">📋</span>
+      <span class="folder-root-name">ASSIGNMENT 1</span>
+      <span class="folder-root-meta">1 assignment</span>
+      <span class="chevron">▶</span>
+    </div>
+
+    <div class="root-children assignment-children">
+      <div class="folder-row assign-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Assignment 1</span>
+        <span class="tag tag-amber">ASSIGN</span>
+        <span class="folder-row-path">ASSIGNMENT1/</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="leaf-grid assign-grid">
+        <a class="leaf-card assign-card" href="ASSIGNMENT1/">
+          <span class="leaf-card-icon">📝</span>
+          <span class="leaf-card-name">Readme</span>
+          <span class="tag tag-amber">DOC</span>
+          <span class="leaf-card-path">ASSIGNMENT1/</span>
+        </a>
+        <a class="leaf-card assign-card" href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab/tree/main/ASSIGNMENT1" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-amber">REPO</span>
+          <span class="leaf-card-path">ASSIGNMENT1/</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ LAB EXPERIMENTS ══ -->
+  <section class="section">
+    <div class="folder-root" onclick="toggleRoot(this)">
+      <span class="folder-root-icon">🔬</span>
+      <span class="folder-root-name">LAB EXPERIMENTS</span>
+      <span class="folder-root-meta">8 experiments</span>
+      <span class="chevron">▶</span>
+    </div>
+
+    <div class="root-children">
+
+      <!-- exp1 -->
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 1</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">lab/exp1/</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="leaf-grid">
+        <a class="leaf-card" href="lab/exp1/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp1</span>
+          <span class="leaf-card-path">lab/exp1/</span>
+        </a>
+        <a class="leaf-card" href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab/tree/main/lab/exp1" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp1/</span>
+        </a>
+      </div>
+
+      <!-- exp2 -->
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 2</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">lab/exp2/</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="leaf-grid">
+        <a class="leaf-card" href="lab/exp2/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp2</span>
+          <span class="leaf-card-path">lab/exp2/</span>
+        </a>
+        <a class="leaf-card" href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab/tree/main/lab/exp2" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp2/</span>
+        </a>
+      </div>
+
+      <!-- exp3 -->
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 3</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">lab/exp3/</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="leaf-grid">
+        <a class="leaf-card" href="lab/exp3/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp3</span>
+          <span class="leaf-card-path">lab/exp3/</span>
+        </a>
+        <a class="leaf-card" href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab/tree/main/lab/exp3" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp3/</span>
+        </a>
+      </div>
+
+      <!-- exp4 -->
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 4</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">lab/exp4/</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="leaf-grid">
+        <a class="leaf-card" href="lab/exp4/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp4</span>
+          <span class="leaf-card-path">lab/exp4/</span>
+        </a>
+        <a class="leaf-card" href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab/tree/main/lab/exp4" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp4/</span>
+        </a>
+      </div>
+
+      <!-- exp5 -->
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 5</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">lab/exp5/</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="leaf-grid">
+        <a class="leaf-card" href="lab/exp5/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp5</span>
+          <span class="leaf-card-path">lab/exp5/</span>
+        </a>
+        <a class="leaf-card" href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab/tree/main/lab/exp5" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp5/</span>
+        </a>
+      </div>
+
+      <!-- exp6 -->
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 6</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">lab/exp6/</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="leaf-grid">
+        <a class="leaf-card" href="lab/exp6/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp6</span>
+          <span class="leaf-card-path">lab/exp6/</span>
+        </a>
+        <a class="leaf-card" href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab/tree/main/lab/exp6" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp6/</span>
+        </a>
+      </div>
+
+      <!-- exp7 -->
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 7</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">lab/exp7/</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="leaf-grid">
+        <a class="leaf-card" href="lab/exp7/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp7</span>
+          <span class="leaf-card-path">lab/exp7/</span>
+        </a>
+        <a class="leaf-card" href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab/tree/main/lab/exp7" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp7/</span>
+        </a>
+      </div>
+
+      <!-- exp8 -->
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 8</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">lab/exp8/</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="leaf-grid">
+        <a class="leaf-card" href="lab/exp8/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp8</span>
+          <span class="leaf-card-path">lab/exp8/</span>
+        </a>
+        <a class="leaf-card" href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab/tree/main/lab/exp8" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp8/</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>🌌 Akshay Kumar · SAP ID: 500120477 · Batch 3</span>
+    <a href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab" target="_blank">github.com/Kumaxshay</a>
+  </footer>
+
 </div>
 
-<footer>
-    🌌 DevOps Lab Project | Hosted on GitHub Pages
-</footer>
+<script>
+  /* ── GENERATE STARS ── */
+  (function() {
+    const layer = document.getElementById('starsLayer');
+    const count = 120;
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2.5 + 0.5;
+      s.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${Math.random()*100}%;
+        top:${Math.random()*100}%;
+        --dur:${2+Math.random()*4}s;
+        --delay:${Math.random()*4}s;
+        opacity:${0.2+Math.random()*0.8};
+      `;
+      layer.appendChild(s);
+    }
+    for (let i = 0; i < 5; i++) {
+      const ss = document.createElement('div');
+      ss.className = 'shooting-star';
+      ss.style.cssText = `
+        left:${Math.random()*60}%;
+        top:${Math.random()*50}%;
+        --sd:${5+Math.random()*8}s;
+        --delay:${Math.random()*10}s;
+      `;
+      layer.appendChild(ss);
+    }
+  })();
 
+  /* ── TOGGLE LOGIC ── */
+  function toggleRoot(el) {
+    el.classList.toggle('open');
+    el.nextElementSibling.classList.toggle('visible');
+  }
+
+  function toggleRow(el) {
+    const siblings = el.parentElement.querySelectorAll('.folder-row.open');
+    siblings.forEach(s => {
+      if (s !== el) {
+        s.classList.remove('open');
+        const next = s.nextElementSibling;
+        if (next && next.classList.contains('leaf-grid')) next.classList.remove('visible');
+      }
+    });
+    el.classList.toggle('open');
+    const grid = el.nextElementSibling;
+    if (grid && grid.classList.contains('leaf-grid')) {
+      grid.classList.toggle('visible');
+    }
+  }
+</script>
 </body>
 </html>
