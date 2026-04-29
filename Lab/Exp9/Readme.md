@@ -204,7 +204,7 @@ IP of server4 is 172.17.0.5
 
 This script auto-generates `inventory.ini` with the real container IPs:
 
-{% raw %}
+
 ```bash
 echo "[servers]" > inventory.ini
 for i in {1..4}; do
