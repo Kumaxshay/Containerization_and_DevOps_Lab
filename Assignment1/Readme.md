@@ -127,7 +127,7 @@ docker images | grep -E "backend|database"
 
 ##  Report
 
-See [REPORT.md](./REPORT.md) for the detailed project report including:
+See [REPORT.md](./report/REPORT.md) for the detailed project report including:
 - Build optimization explanation
 - Network design diagram
 - Image size comparison
