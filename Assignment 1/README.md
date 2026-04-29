@@ -22,7 +22,7 @@ docker-postgres-project/
 ├── docker-compose.yml      # Service orchestration
 ├── .env                    # Environment variables
 ├── .gitignore
-├── REPORT.md               # Detailed project report
+├── REPORT.md               # Detailed project report about assignment
 └── README.md
 ```
 
