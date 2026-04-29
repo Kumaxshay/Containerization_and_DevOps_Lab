@@ -173,7 +173,6 @@ docker build -t ubuntu-server .
 
 ### Step 4: Launch 4 Server Containers
 
-{% raw %}
 ```bash
 for i in {1..4}; do
     echo -e "\n Creating server${i}\n"
