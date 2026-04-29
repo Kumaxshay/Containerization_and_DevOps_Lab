@@ -1,9 +1,10 @@
 # **Experiment 7: CI/CD Pipeline using Jenkins, GitHub and Docker Hub**
 
-## Name: Shreya Mahara  
-Roll no: R2142231007   
-Sap-ID: 500121082    
+## Name: Akshay Kumar  
+Roll no: R2142231012   
+Sap-ID: 500120477    
 School of Computer Science,
+
 
 University of Petroleum and Energy Studies, Dehradun
 ---
