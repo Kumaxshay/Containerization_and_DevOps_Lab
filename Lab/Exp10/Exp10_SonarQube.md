@@ -86,7 +86,7 @@ Login with default credentials:
 - **Username:** `admin`
 - **Password:** `admin`
 
-![SonarQube Dashboard](screenshots/sonarqube-dashboard.png)
+![SonarQube Dashboard](sonarqube-dashboard.png)
 
 ---
 
@@ -143,7 +143,7 @@ Click **Build Now** in Jenkins to trigger the pipeline.
 
 The console output shows the SonarQube scanner running and sending results to the server:
 
-![Jenkins Console Output](screenshots/console-output.png)
+![Jenkins Console Output](console-output.png)
 
 ---
 
@@ -151,11 +151,11 @@ The console output shows the SonarQube scanner running and sending results to th
 
 After the build completes, open the SonarQube dashboard to view the full analysis:
 
-![SonarQube Dashboard](screenshots/sonarqube-dashboard.png)
+![SonarQube Dashboard](sonarqube-dashboard.png)
 
 View detected issues such as bugs, vulnerabilities, and code smells:
 
-![Issues Detected](screenshots/issues.png)
+![Issues Detected](issues.png)
 
 ---
 
@@ -163,7 +163,7 @@ View detected issues such as bugs, vulnerabilities, and code smells:
 
 Verify the pipeline completed successfully in Jenkins:
 
-![Jenkins Pipeline Success](screenshots/jenkins-success.png)
+![Jenkins Pipeline Success](jenkins-success.png)
 
 ---
 
