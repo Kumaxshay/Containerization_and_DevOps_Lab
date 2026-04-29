@@ -283,6 +283,10 @@ Successfully implemented a complete CI/CD pipeline where:
 ![](image2.png)
 ![](image3.png)
 ![](image4.png)
+![](image5.png)
+![](image6.png)
+![](image7.png)
+![](image8.png)
 
 
 ---
