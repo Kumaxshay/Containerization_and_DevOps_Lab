@@ -275,7 +275,7 @@ For verbose output (useful for debugging):
 ### Step 7: Create and Run Playbook (`update.yml`)
 
 
-{% raw %}
+
 ```yaml
 ---
 - name: Update and configure servers
