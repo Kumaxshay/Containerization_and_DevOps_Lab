@@ -30,6 +30,7 @@
       overflow-x: hidden;
     }
 
+    /* ── STARS ── */
     .stars-layer {
       position: fixed;
       inset: 0;
@@ -62,6 +63,7 @@
       100% { opacity: 0; transform: translateX(400px) translateY(200px) rotate(-30deg); }
     }
 
+    /* ── NEBULA GLOW ── */
     .nebula {
       position: fixed;
       border-radius: 50%;
@@ -77,6 +79,7 @@
       to   { transform: translate(30px, 20px); }
     }
 
+    /* ── LAYOUT ── */
     .container {
       position: relative;
       z-index: 1;
@@ -85,6 +88,7 @@
       padding: 60px 24px 80px;
     }
 
+    /* ── HEADER ── */
     header {
       text-align: center;
       margin-bottom: 56px;
@@ -127,6 +131,7 @@
       text-transform: uppercase;
     }
 
+    /* ── GITHUB BTN ── */
     .github-btn {
       display: inline-flex;
       align-items: center;
@@ -150,6 +155,7 @@
       transform: scale(1.05);
     }
 
+    /* ── STUDENT CARD ── */
     .student-card {
       margin: 40px auto 0;
       max-width: 560px;
@@ -187,6 +193,7 @@
       color: var(--accent);
     }
 
+    /* ── SECTIONS ── */
     .section {
       margin-bottom: 20px;
       animation: fadeUp 0.6s ease both;
@@ -195,6 +202,7 @@
     .section:nth-child(2) { animation-delay: 0.2s; }
     .section:nth-child(3) { animation-delay: 0.3s; }
 
+    /* ── FOLDER ROOT ── */
     .folder-root {
       display: flex;
       align-items: center;
@@ -242,6 +250,7 @@
     }
     .open > .chevron { transform: rotate(90deg); }
 
+    /* ── ROOT CHILDREN ── */
     .root-children {
       display: none;
       background: rgba(0,0,0,0.4);
@@ -257,7 +266,7 @@
     .root-children.visible { display: flex; }
     .root-children.assignment-children { border-color: var(--accent3); }
 
-    /* ── SUBFOLDER ROW (collapsible) ── */
+    /* ── FOLDER ROW ── */
     .folder-row {
       display: flex;
       align-items: center;
@@ -321,42 +330,6 @@
     .leaf-card-name { font-size: 0.85rem; font-weight: 600; }
     .leaf-card-path { font-size: 9px; color: var(--muted); font-family: monospace; }
 
-    /* ── FILE LIST (flat, non-collapsible files inside a folder) ── */
-    .file-list {
-      display: none;
-      flex-direction: column;
-      gap: 6px;
-      padding: 10px 12px;
-      background: rgba(0,0,0,0.3);
-      border: 1px solid rgba(255,107,53,0.2);
-      border-top: none;
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
-    }
-    .file-list.visible { display: flex; }
-
-    .file-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 9px 14px;
-      background: var(--surface);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 8px;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 0.82rem;
-      transition: all 0.25s;
-    }
-    .file-item:hover {
-      border-color: rgba(255,107,53,0.4);
-      background: rgba(255,107,53,0.05);
-      transform: translateX(4px);
-    }
-    .file-item-icon { font-size: 1rem; flex-shrink: 0; }
-    .file-item-name { flex: 1; font-weight: 500; }
-    .file-item-type { font-size: 9px; color: var(--muted); font-family: monospace; }
-
     /* ── TAGS ── */
     .tag {
       display: inline-block;
@@ -370,9 +343,8 @@
     .tag-blue  { background: rgba(0,247,255,0.1);  color: var(--accent);  border: 1px solid rgba(0,247,255,0.25); }
     .tag-green { background: rgba(0,255,128,0.1);  color: #00ff80;        border: 1px solid rgba(0,255,128,0.25); }
     .tag-amber { background: rgba(255,107,53,0.1); color: var(--accent3); border: 1px solid rgba(255,107,53,0.25); }
-    .tag-purple { background: rgba(180,100,255,0.1); color: #b464ff; border: 1px solid rgba(180,100,255,0.25); }
-    .tag-yellow { background: rgba(255,220,50,0.1); color: #ffdc32; border: 1px solid rgba(255,220,50,0.25); }
 
+    /* ── FOOTER ── */
     footer {
       margin-top: 60px;
       padding-top: 24px;
@@ -388,6 +360,7 @@
     footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { text-shadow: 0 0 10px var(--accent); }
 
+    /* ── ANIMATIONS ── */
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-20px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -397,6 +370,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* ── SECTION HEADER SPACING ── */
     .sections-title {
       text-align: center;
       margin: 48px 0 28px;
@@ -406,75 +380,21 @@
       color: var(--muted);
       text-transform: uppercase;
     }
-
-    /* Nested subfolder inside assignment */
-    .subfolder-block {
-      margin-left: 0;
-    }
-    .subfolder-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      background: rgba(255,107,53,0.06);
-      border: 1px solid rgba(255,107,53,0.2);
-      border-radius: 8px;
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.25s;
-      margin-bottom: 0;
-    }
-    .subfolder-header:hover { border-color: rgba(255,107,53,0.4); background: rgba(255,107,53,0.1); }
-    .subfolder-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; border-color: rgba(255,107,53,0.5); }
-    .subfolder-header .chevron { color: var(--accent3); font-size: 0.65rem; }
-    .subfolder-header.open .chevron { transform: rotate(90deg); }
-    .subfolder-name { font-size: 0.82rem; font-weight: 600; flex: 1; font-family: monospace; color: rgba(255,255,255,0.9); }
-    .subfolder-icon { font-size: 0.95rem; }
-
-    .subfolder-files {
-      display: none;
-      flex-direction: column;
-      gap: 4px;
-      padding: 8px 10px;
-      background: rgba(0,0,0,0.25);
-      border: 1px solid rgba(255,107,53,0.2);
-      border-top: none;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
-      margin-bottom: 6px;
-    }
-    .subfolder-files.visible { display: flex; }
-
-    .sub-file-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 6px;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 0.78rem;
-      transition: all 0.2s;
-    }
-    .sub-file-item:hover {
-      border-color: rgba(255,107,53,0.3);
-      background: rgba(255,107,53,0.04);
-    }
-    .sub-file-icon { font-size: 0.85rem; }
-    .sub-file-name { flex: 1; font-family: monospace; }
   </style>
 </head>
 <body>
 
+<!-- Stars -->
 <div class="stars-layer" id="starsLayer"></div>
+
+<!-- Nebula glow -->
 <div class="nebula nebula-1"></div>
 <div class="nebula nebula-2"></div>
 <div class="nebula nebula-3"></div>
 
 <div class="container">
 
+  <!-- ══ HEADER ══ -->
   <header>
     <span class="rocket-icon">🚀</span>
     <h1>Containerization<br>&amp; DevOps Lab</h1>
@@ -505,128 +425,37 @@
 
   <p class="sections-title">🌌 Mission Files</p>
 
-  <!-- ══ ASSIGNMENT 1 ══ -->
+  <!-- ══ ASSIGNMENT ══ -->
   <section class="section">
-    <div class="folder-root assignment-root" onclick="toggleRoot(this)">
+    <div class="folder-root" onclick="toggleRoot(this)">
       <span class="folder-root-icon">📋</span>
       <span class="folder-root-name">ASSIGNMENT 1</span>
-      <span class="folder-root-meta">2 folders · 7 files</span>
+      <span class="folder-root-meta">1 assignment</span>
       <span class="chevron">▶</span>
     </div>
 
-    <div class="root-children assignment-children">
-
-      <!-- backend subfolder -->
-      <div class="subfolder-block">
-        <div class="subfolder-header" onclick="toggleSubfolder(this)">
-          <span class="subfolder-icon">📂</span>
-          <span class="subfolder-name">backend/</span>
-          <span class="tag tag-amber">FOLDER</span>
-          <span class="chevron">▶</span>
-        </div>
-        <div class="subfolder-files">
-          <a class="sub-file-item" href="ASSIGNMENT1/backend/" target="_blank">
-            <span class="sub-file-icon">📁</span>
-            <span class="sub-file-name">Browse backend/</span>
-            <span class="tag tag-amber">DIR</span>
-          </a>
-          <a class="sub-file-item" href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab/tree/main/ASSIGNMENT1/backend" target="_blank">
-            <span class="sub-file-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
-            <span class="sub-file-name">View on GitHub</span>
-            <span class="tag tag-blue">REPO</span>
-          </a>
-        </div>
+    <div class="root-children">
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Assignment 1</span>
+        <span class="tag tag-amber">ASSIGN</span>
+        <span class="folder-row-path">ASSIGNMENT1/</span>
+        <span class="chevron">▶</span>
       </div>
-
-      <!-- database subfolder -->
-      <div class="subfolder-block">
-        <div class="subfolder-header" onclick="toggleSubfolder(this)">
-          <span class="subfolder-icon">🗄️</span>
-          <span class="subfolder-name">database/</span>
-          <span class="tag tag-amber">FOLDER</span>
-          <span class="chevron">▶</span>
-        </div>
-        <div class="subfolder-files">
-          <a class="sub-file-item" href="ASSIGNMENT1/database/" target="_blank">
-            <span class="sub-file-icon">📁</span>
-            <span class="sub-file-name">Browse database/</span>
-            <span class="tag tag-amber">DIR</span>
-          </a>
-          <a class="sub-file-item" href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab/tree/main/ASSIGNMENT1/database" target="_blank">
-            <span class="sub-file-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
-            <span class="sub-file-name">View on GitHub</span>
-            <span class="tag tag-blue">REPO</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Root-level files -->
-      <div class="file-list visible" style="margin-top:4px;">
-
-        <a class="file-item assign-card" href="ASSIGNMENT1/docker-compose.yml" target="_blank">
-          <span class="file-item-icon">🐳</span>
-          <span class="file-item-name">docker-compose.yml</span>
-          <span class="tag tag-blue">COMPOSE</span>
-          <span class="file-item-type">ASSIGNMENT1/docker-compose.yml</span>
+      <div class="leaf-grid">
+        <a class="leaf-card" href="ASSIGNMENT1/">
+          <span class="leaf-card-icon">📝</span>
+          <span class="leaf-card-name">Readme</span>
+          <span class="tag tag-amber">DOC</span>
+          <span class="leaf-card-path">ASSIGNMENT1/</span>
         </a>
-
-        <a class="file-item assign-card" href="ASSIGNMENT1/dockernetwork.png" target="_blank">
-          <span class="file-item-icon">🖼️</span>
-          <span class="file-item-name">dockernetwork.png</span>
-          <span class="tag tag-purple">IMAGE</span>
-          <span class="file-item-type">ASSIGNMENT1/dockernetwork.png</span>
-        </a>
-
-        <a class="file-item assign-card" href="ASSIGNMENT1/index.md" target="_blank">
-          <span class="file-item-icon">📄</span>
-          <span class="file-item-name">index.md</span>
-          <span class="tag tag-green">DOC</span>
-          <span class="file-item-type">ASSIGNMENT1/index.md</span>
-        </a>
-
-        <a class="file-item assign-card" href="ASSIGNMENT1/REPORT.md" target="_blank">
-          <span class="file-item-icon">📝</span>
-          <span class="file-item-name">REPORT.md</span>
-          <span class="tag tag-amber">REPORT</span>
-          <span class="file-item-type">ASSIGNMENT1/REPORT.md</span>
-        </a>
-
-        <a class="file-item assign-card" href="ASSIGNMENT1/Screenshot (2).png" target="_blank">
-          <span class="file-item-icon">📸</span>
-          <span class="file-item-name">Screenshot (2).png</span>
-          <span class="tag tag-purple">SS</span>
-          <span class="file-item-type">ASSIGNMENT1/Screenshot (2).png</span>
-        </a>
-
-        <a class="file-item assign-card" href="ASSIGNMENT1/Screenshot (3).png" target="_blank">
-          <span class="file-item-icon">📸</span>
-          <span class="file-item-name">Screenshot (3).png</span>
-          <span class="tag tag-purple">SS</span>
-          <span class="file-item-type">ASSIGNMENT1/Screenshot (3).png</span>
-        </a>
-
-        <!-- Multiple Screenshot 2026-03- files (5 visible in screenshot) -->
-        <a class="file-item assign-card" href="ASSIGNMENT1/" target="_blank">
-          <span class="file-item-icon">📸</span>
-          <span class="file-item-name">Screenshot 2026-03-... (×5)</span>
-          <span class="tag tag-purple">SS</span>
-          <span class="file-item-type">ASSIGNMENT1/Screenshot 2026-03-*.png</span>
-        </a>
-
-        <a class="file-item assign-card" href="ASSIGNMENT1/temp" target="_blank">
-          <span class="file-item-icon">📁</span>
-          <span class="file-item-name">temp</span>
-          <span class="tag tag-yellow">TEMP</span>
-          <span class="file-item-type">ASSIGNMENT1/temp</span>
-        </a>
-
-        <a class="file-item" href="https://github.com/Kumaxshay/Containerization_and_DevOps_Lab/tree/main/ASSIGNMENT1" target="_blank" style="border-color: rgba(0,247,255,0.15); margin-top:6px;">
-          <span class="file-item-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
-          <span class="file-item-name">View full Assignment 1 on GitHub →</span>
-          <span class="tag tag-blue">REPO</span>
+        <a class="leaf-card" href="ASSIGNMENT1/" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-amber">REPO</span>
+          <span class="leaf-card-path">ASSIGNMENT1/</span>
         </a>
       </div>
-
     </div>
   </section>
 
@@ -635,104 +464,261 @@
     <div class="folder-root" onclick="toggleRoot(this)">
       <span class="folder-root-icon">🔬</span>
       <span class="folder-root-name">LAB EXPERIMENTS</span>
-      <span class="folder-root-meta">12 experiments</span>
+      <span class="folder-root-meta">8 experiments</span>
       <span class="chevron">▶</span>
     </div>
-
     <div class="root-children">
-
       <!-- exp1 -->
       <div class="folder-row" onclick="toggleRow(this)">
         <span class="folder-row-icon">📂</span>
         <span class="folder-row-name">Experiment 1</span>
         <span class="tag tag-green">EXP</span>
-        <span class="folder-row-path">Lab/Exp1/</span>
+        <span class="folder-row-path">lab/exp1/</span>
         <span class="chevron">▶</span>
       </div>
       <div class="leaf-grid">
-        <a class="leaf-card" href="Lab/Exp1/"><span class="leaf-card-icon">📁</span><span class="leaf-card-name">exp1</span><span class="leaf-card-path">Lab/Exp1/</span></a>
-        <a class="leaf-card" href="Lab/Exp1" target="_blank"><span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span><span class="leaf-card-name">View on GitHub</span><span class="tag tag-blue">REPO</span><span class="leaf-card-path">Lab/Exp1/</span></a>
+        <a class="leaf-card" href="Lab/Exp1/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp1</span>
+          <span class="leaf-card-path">Lab/Exp1/</span>
+        </a>
+        <a class="leaf-card" href="Lab/Exp1" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">Lab/Exp1/</span>
+        </a>
       </div>
 
       <!-- exp2 -->
       <div class="folder-row" onclick="toggleRow(this)">
-        <span class="folder-row-icon">📂</span><span class="folder-row-name">Experiment 2</span><span class="tag tag-green">EXP</span><span class="folder-row-path">Lab/Exp2/</span><span class="chevron">▶</span>
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 2</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">Lab/Exp2/</span>
+        <span class="chevron">▶</span>
       </div>
       <div class="leaf-grid">
-        <a class="leaf-card" href="Lab/Exp2/"><span class="leaf-card-icon">📁</span><span class="leaf-card-name">exp2</span><span class="leaf-card-path">Lab/Exp2/</span></a>
-        <a class="leaf-card" href="Lab/Exp2" target="_blank"><span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span><span class="leaf-card-name">View on GitHub</span><span class="tag tag-blue">REPO</span><span class="leaf-card-path">Lab/Exp2/</span></a>
+        <a class="leaf-card" href="Lab/Exp2/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp2</span>
+          <span class="leaf-card-path">Lab/Exp2/</span>
+        </a>
+        <a class="leaf-card" href="Lab/Exp2" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">Lab/Exp2/</span>
+        </a>
       </div>
 
       <!-- exp3 -->
-      <div class="folder-row" onclick="toggleRow(this)"><span class="folder-row-icon">📂</span><span class="folder-row-name">Experiment 3</span><span class="tag tag-green">EXP</span><span class="folder-row-path">Lab/Exp3/</span><span class="chevron">▶</span></div>
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 3</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">Lab/Exp3/</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="leaf-grid">
-        <a class="leaf-card" href="Lab/Exp3/"><span class="leaf-card-icon">📁</span><span class="leaf-card-name">exp3</span><span class="leaf-card-path">Lab/Exp3/</span></a>
-        <a class="leaf-card" href="Lab/Exp3" target="_blank"><span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span><span class="leaf-card-name">View on GitHub</span><span class="tag tag-blue">REPO</span><span class="leaf-card-path">Lab/Exp3/</span></a>
+        <a class="leaf-card" href="Lab/Exp3/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp3</span>
+          <span class="leaf-card-path">Lab/Exp3/</span>
+        </a>
+        <a class="leaf-card" href="Lab/Exp3" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">Lab/Exp3/</span>
+        </a>
       </div>
 
       <!-- exp4 -->
-      <div class="folder-row" onclick="toggleRow(this)"><span class="folder-row-icon">📂</span><span class="folder-row-name">Experiment 4</span><span class="tag tag-green">EXP</span><span class="folder-row-path">Lab/Exp4/</span><span class="chevron">▶</span></div>
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 4</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">Lab/Exp4/</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="leaf-grid">
-        <a class="leaf-card" href="Lab/Exp4/"><span class="leaf-card-icon">📁</span><span class="leaf-card-name">exp4</span><span class="leaf-card-path">Lab/Exp4/</span></a>
-        <a class="leaf-card" href="Lab/Exp4" target="_blank"><span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span><span class="leaf-card-name">View on GitHub</span><span class="tag tag-blue">REPO</span><span class="leaf-card-path">Lab/Exp4/</span></a>
+        <a class="leaf-card" href="Lab/Exp4/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp4</span>
+          <span class="leaf-card-path">Lab/Exp4/</span>
+        </a>
+        <a class="leaf-card" href="Lab/Exp4" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">Lab/Exp4/</span>
+        </a>
       </div>
 
       <!-- exp5 -->
-      <div class="folder-row" onclick="toggleRow(this)"><span class="folder-row-icon">📂</span><span class="folder-row-name">Experiment 5</span><span class="tag tag-green">EXP</span><span class="folder-row-path">Lab/Exp5/</span><span class="chevron">▶</span></div>
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 5</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">Lab/Exp5/</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="leaf-grid">
-        <a class="leaf-card" href="Lab/Exp5/"><span class="leaf-card-icon">📁</span><span class="leaf-card-name">exp5</span><span class="leaf-card-path">Lab/Exp5/</span></a>
-        <a class="leaf-card" href="Lab/Exp5" target="_blank"><span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span><span class="leaf-card-name">View on GitHub</span><span class="tag tag-blue">REPO</span><span class="leaf-card-path">Lab/Exp5/</span></a>
+        <a class="leaf-card" href="Lab/Exp5/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp5</span>
+          <span class="leaf-card-path">Lab/Exp5/</span>
+        </a>
+        <a class="leaf-card" href="Lab/Exp5" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">Lab/Exp5/</span>
+        </a>
       </div>
 
       <!-- exp6 -->
-      <div class="folder-row" onclick="toggleRow(this)"><span class="folder-row-icon">📂</span><span class="folder-row-name">Experiment 6</span><span class="tag tag-green">EXP</span><span class="folder-row-path">Lab/Exp6/</span><span class="chevron">▶</span></div>
-      <div class="leaf-grid">
-        <a class="leaf-card" href="Lab/Exp6/"><span class="leaf-card-icon">📁</span><span class="leaf-card-name">exp6</span><span class="leaf-card-path">Lab/Exp6/</span></a>
-        <a class="leaf-card" href="Lab/Exp6" target="_blank"><span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span><span class="leaf-card-name">View on GitHub</span><span class="tag tag-blue">REPO</span><span class="leaf-card-path">Lab/Exp6/</span></a>
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 6</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">Lab/Exp6/</span>
+        <span class="chevron">▶</span>
       </div>
-
-      <!-- exp7 -->
-      <div class="folder-row" onclick="toggleRow(this)"><span class="folder-row-icon">📂</span><span class="folder-row-name">Experiment 7</span><span class="tag tag-green">EXP</span><span class="folder-row-path">Lab/Exp7/</span><span class="chevron">▶</span></div>
       <div class="leaf-grid">
-        <a class="leaf-card" href="Lab/Exp7/"><span class="leaf-card-icon">📁</span><span class="leaf-card-name">exp7</span><span class="leaf-card-path">Lab/Exp7/</span></a>
-        <a class="leaf-card" href="Lab/Exp7" target="_blank"><span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span><span class="leaf-card-name">View on GitHub</span><span class="tag tag-blue">REPO</span><span class="leaf-card-path">Lab/Exp7/</span></a>
+        <a class="leaf-card" href="Lab/Exp6/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp6</span>
+          <span class="leaf-card-path">Lab/Exp6/</span>
+        </a>
+        <a class="leaf-card" href="Lab/Exp6" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp6/</span>
+        </a>
       </div>
-
-      <!-- exp8 -->
-      <div class="folder-row" onclick="toggleRow(this)"><span class="folder-row-icon">📂</span><span class="folder-row-name">Experiment 8</span><span class="tag tag-green">EXP</span><span class="folder-row-path">Lab/Exp8/</span><span class="chevron">▶</span></div>
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 7</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">Lab/Exp7/</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="leaf-grid">
-        <a class="leaf-card" href="Lab/Exp8/"><span class="leaf-card-icon">📁</span><span class="leaf-card-name">exp8</span><span class="leaf-card-path">Lab/Exp8/</span></a>
-        <a class="leaf-card" href="Lab/Exp8" target="_blank"><span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span><span class="leaf-card-name">View on GitHub</span><span class="tag tag-blue">REPO</span><span class="leaf-card-path">Lab/Exp8/</span></a>
+        <a class="leaf-card" href="Lab/Exp7/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp7</span>
+          <span class="leaf-card-path">Lab/Exp6/</span>
+        </a>
+        <a class="leaf-card" href="Lab/Exp7" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp7/</span>
+        </a>
       </div>
-
-      <!-- exp9 -->
-      <div class="folder-row" onclick="toggleRow(this)"><span class="folder-row-icon">📂</span><span class="folder-row-name">Experiment 9</span><span class="tag tag-green">EXP</span><span class="folder-row-path">Lab/Exp9/</span><span class="chevron">▶</span></div>
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 8</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">Lab/Exp8/</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="leaf-grid">
-        <a class="leaf-card" href="Lab/Exp9/"><span class="leaf-card-icon">📁</span><span class="leaf-card-name">exp9</span><span class="leaf-card-path">Lab/Exp9/</span></a>
-        <a class="leaf-card" href="Lab/Exp9" target="_blank"><span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span><span class="leaf-card-name">View on GitHub</span><span class="tag tag-blue">REPO</span><span class="leaf-card-path">Lab/Exp9/</span></a>
+        <a class="leaf-card" href="Lab/Exp8/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp8</span>
+          <span class="leaf-card-path">Lab/Exp8/</span>
+        </a>
+        <a class="leaf-card" href="Lab/Exp8" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp8/</span>
+        </a>
       </div>
-
-      <!-- exp10 -->
-      <div class="folder-row" onclick="toggleRow(this)"><span class="folder-row-icon">📂</span><span class="folder-row-name">Experiment 10</span><span class="tag tag-green">EXP</span><span class="folder-row-path">Lab/Exp10/</span><span class="chevron">▶</span></div>
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 9</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">Lab/Exp9/</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="leaf-grid">
-        <a class="leaf-card" href="Lab/Exp10/"><span class="leaf-card-icon">📁</span><span class="leaf-card-name">exp10</span><span class="leaf-card-path">Lab/Exp10/</span></a>
-        <a class="leaf-card" href="Lab/Exp10" target="_blank"><span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span><span class="leaf-card-name">View on GitHub</span><span class="tag tag-blue">REPO</span><span class="leaf-card-path">Lab/Exp10/</span></a>
+        <a class="leaf-card" href="Lab/Exp9/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp9</span>
+          <span class="leaf-card-path">Lab/Exp9/</span>
+        </a>
+        <a class="leaf-card" href="Lab/Exp9" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp9/</span>
+        </a>
       </div>
-
-      <!-- exp11 -->
-      <div class="folder-row" onclick="toggleRow(this)"><span class="folder-row-icon">📂</span><span class="folder-row-name">Experiment 11</span><span class="tag tag-green">EXP</span><span class="folder-row-path">Lab/Exp11/</span><span class="chevron">▶</span></div>
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 10</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">Lab/Exp10/</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="leaf-grid">
-        <a class="leaf-card" href="Lab/Exp11/"><span class="leaf-card-icon">📁</span><span class="leaf-card-name">exp11</span><span class="leaf-card-path">Lab/Exp11/</span></a>
-        <a class="leaf-card" href="Lab/Exp11" target="_blank"><span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span><span class="leaf-card-name">View on GitHub</span><span class="tag tag-blue">REPO</span><span class="leaf-card-path">Lab/Exp11/</span></a>
+        <a class="leaf-card" href="Lab/Exp10/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp10</span>
+          <span class="leaf-card-path">Lab/Exp10/</span>
+        </a>
+        <a class="leaf-card" href="Lab/Exp10" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp10/</span>
+        </a>
       </div>
-
-      <!-- exp12 -->
-      <div class="folder-row" onclick="toggleRow(this)"><span class="folder-row-icon">📂</span><span class="folder-row-name">Experiment 12</span><span class="tag tag-green">EXP</span><span class="folder-row-path">Lab/Exp12/</span><span class="chevron">▶</span></div>
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 11</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">Lab/Exp11/</span>
+        <span class="chevron">▶</span>
+      </div>
       <div class="leaf-grid">
-        <a class="leaf-card" href="Lab/Exp12/"><span class="leaf-card-icon">📁</span><span class="leaf-card-name">exp12</span><span class="leaf-card-path">Lab/Exp12/</span></a>
-        <a class="leaf-card" href="Lab/Exp12" target="_blank"><span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span><span class="leaf-card-name">View on GitHub</span><span class="tag tag-blue">REPO</span><span class="leaf-card-path">Lab/Exp12/</span></a>
+        <a class="leaf-card" href="Lab/Exp11/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp11</span>
+          <span class="leaf-card-path">Lab/Exp11/</span>
+        </a>
+        <a class="leaf-card" href="Lab/Exp11" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp11/</span>
+        </a>
       </div>
-
+      <div class="folder-row" onclick="toggleRow(this)">
+        <span class="folder-row-icon">📂</span>
+        <span class="folder-row-name">Experiment 12</span>
+        <span class="tag tag-green">EXP</span>
+        <span class="folder-row-path">Lab/Exp12/</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="leaf-grid">
+        <a class="leaf-card" href="Lab/Exp12/">
+          <span class="leaf-card-icon">📁</span>
+          <span class="leaf-card-name">exp6</span>
+          <span class="leaf-card-path">Lab/Exp12/</span>
+        </a>
+        <a class="leaf-card" href="Lab/Exp12" target="_blank">
+          <span class="leaf-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <span class="leaf-card-name">View on GitHub</span>
+          <span class="tag tag-blue">REPO</span>
+          <span class="leaf-card-path">lab/exp12/</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -744,23 +730,38 @@
 </div>
 
 <script>
+  /* ── GENERATE STARS ── */
   (function() {
     const layer = document.getElementById('starsLayer');
-    for (let i = 0; i < 120; i++) {
+    const count = 120;
+    for (let i = 0; i < count; i++) {
       const s = document.createElement('div');
       s.className = 'star';
       const size = Math.random() * 2.5 + 0.5;
-      s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;--delay:${Math.random()*4}s;opacity:${0.2+Math.random()*0.8};`;
+      s.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${Math.random()*100}%;
+        top:${Math.random()*100}%;
+        --dur:${2+Math.random()*4}s;
+        --delay:${Math.random()*4}s;
+        opacity:${0.2+Math.random()*0.8};
+      `;
       layer.appendChild(s);
     }
     for (let i = 0; i < 5; i++) {
       const ss = document.createElement('div');
       ss.className = 'shooting-star';
-      ss.style.cssText = `left:${Math.random()*60}%;top:${Math.random()*50}%;--sd:${5+Math.random()*8}s;--delay:${Math.random()*10}s;`;
+      ss.style.cssText = `
+        left:${Math.random()*60}%;
+        top:${Math.random()*50}%;
+        --sd:${5+Math.random()*8}s;
+        --delay:${Math.random()*10}s;
+      `;
       layer.appendChild(ss);
     }
   })();
 
+  /* ── TOGGLE LOGIC ── */
   function toggleRoot(el) {
     el.classList.toggle('open');
     el.nextElementSibling.classList.toggle('visible');
@@ -777,13 +778,9 @@
     });
     el.classList.toggle('open');
     const grid = el.nextElementSibling;
-    if (grid && grid.classList.contains('leaf-grid')) grid.classList.toggle('visible');
-  }
-
-  function toggleSubfolder(el) {
-    el.classList.toggle('open');
-    const files = el.nextElementSibling;
-    if (files && files.classList.contains('subfolder-files')) files.classList.toggle('visible');
+    if (grid && grid.classList.contains('leaf-grid')) {
+      grid.classList.toggle('visible');
+    }
   }
 </script>
 </body>
