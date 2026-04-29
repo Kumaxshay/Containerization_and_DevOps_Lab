@@ -279,34 +279,10 @@ Successfully implemented a complete CI/CD pipeline where:
 
 ## 13. Screenshots
 
-
-![Jenkins Getting Started](Screenshot%20(2059).png)
-
-![Screenshot](Screenshot%20(2060).png)
-
-![Screenshot](Screenshot%20(2062).png)
-
-![Screenshot](Screenshot%20(2095).png)
-
-![Screenshot](Screenshot%20(2064).png)
-
-![Screenshot](Screenshot%20(2069).png)
-
-![Screenshot](Screenshot%20(2070).png)
-
-![Screenshot](Screenshot%20(2071).png)
-
-![Screenshot](Screenshot%20(2089).png)
-
-![Screenshot](Screenshot%20(2096).png)
-
-![Screenshot](Screenshot%20(2097).png)
-
-![Screenshot](Screenshot%20(2102).png)
-
-![Screenshot](Screenshot%20(2105).png)
-
-![Screenshot](Screenshot%20(2110).png)
+![](image1.png)
+![](image2.png)
+![](image3.png)
+![](image4.png)
 
 
 ---
